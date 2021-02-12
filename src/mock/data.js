@@ -2,26 +2,26 @@ import { nanoid } from 'nanoid';
 
 // HEAD DATA
 export const headData = {
-  title: '', // e.g: 'Name | Developer'
+  title: 'Taxle', // e.g: 'Name | Developer'
   lang: '', // e.g: en, es, fr, jp
-  description: '', // e.g: Welcome to my website
+  description: ' Tax for Landlords', // e.g: Welcome to my website
 };
 
 // HERO DATA
 export const heroData = {
-  title: '',
-  name: '',
-  subtitle: '',
-  cta: '',
+  title: 'Welcome to',
+  name: ' Taxle',
+  subtitle: 'The choice for landlords',
+  cta: 'Tell me more ',
 };
 
 // ABOUT DATA
 export const aboutData = {
   img: 'profile.jpg',
-  paragraphOne: '',
-  paragraphTwo: '',
-  paragraphThree: '',
-  resume: 'https://www.resumemaker.online/es.php', // if no resume, the button will not show up
+  paragraphOne: 'I like dawgs',
+  paragraphTwo: 'I\'m smawl.',
+  paragraphThree: 'If you have a dawg then you can be client.',
+  resume: '', // if no resume, the button will not show up
 };
 
 // PROJECTS DATA
@@ -88,7 +88,3 @@ export const footerData = {
   ],
 };
 
-// Github start/fork buttons
-export const githubButtons = {
-  isEnabled: true, // set to false to disable the GitHub stars/fork buttons
-};
