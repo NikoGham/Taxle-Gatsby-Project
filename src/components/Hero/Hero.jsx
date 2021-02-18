@@ -3,6 +3,16 @@ import { Container } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
 import PortfolioContext from '../../context/context';
+import House from '../../images/house1.svg';
+import House2 from '../../images/house2.svg';
+import House3 from '../../images/house3.svg';
+import BlueCross from '../../images/blueCross.svg';
+import BlueEquals from '../../images/blueEquals.svg';
+import PinkPlus from '../../images/pinkPlus.svg';
+import BlueMinus from '../../images/blueMinus.svg';
+import LightBlueEquals from '../../images/lightBlueEquals.svg';
+
+
 
 const Header = () => {
   const { hero } = useContext(PortfolioContext);
@@ -24,10 +34,22 @@ const Header = () => {
   return (
     <section id="hero" className="jumbotron">
       <Container>
+        <House className="icon1"/>
+        <House2 className="icon2"/>
+        <House3 className="icon3"/>
+        <BlueCross className="icon4"/>
+        <BlueEquals className="icon5"/>
+        <PinkPlus className="icon6"/>
+        <PinkPlus className="icon62"/>
+        <PinkPlus className="icon63"/>
+        <BlueMinus className="icon7"/>
+        <LightBlueEquals className="icon8"/>
+
+
+
         <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={500} distance="30px">
           <h1 className="hero-title">
-            {title}{' '}
-            <span className="text-color-main">{name || 'Your Name'}</span>
+            {title} <span className="text-color-main">{name || 'Your Name'}</span>
             <br />
             {subtitle}
           </h1>

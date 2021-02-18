@@ -29,7 +29,7 @@
     font-size: 5.6rem;
     font-weight: 700;
     margin-bottom: 3.2rem;
-    text-align: left;
+    text-align: center;
 
     @include respond(tab-land) {
       font-size: 4rem;
@@ -49,6 +49,8 @@
 
   .hero-cta {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     @include respond(tab-port) {
       justify-content: center;
@@ -61,5 +63,63 @@
         font-size: 2rem;
       }
     }
+  }
+
+  @keyframes hover {
+    from {
+      transform: translateY(0px)
+    }
+
+    to {
+      transform: translateY(20px);
+    }
+  }
+  .icon1 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 30vw, 30vh);
+    animation: hover 5s linear infinite alternate none;
+  }
+  .icon2 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 65vw, 60vh);
+  }
+  .icon3 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 75vw, 20vh);
+    animation: hover 3s linear infinite alternate none;
+
+  }
+  .icon4 {
+    position: absolute;
+    @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 30vw, 78vh);
+  }
+  .icon5 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 80vw, 47vh);
+  }
+  .icon6 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 15vw, 20vh);
+    animation: hover 3s linear infinite alternate none;
+  }
+  .icon62 {
+    position: absolute;
+    @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 15vw, 60vh);
+    animation: hover 3s linear 1s infinite alternate none;
+
+  }
+  .icon63 {
+    position: absolute;
+    @include iconSizeAndPos($medIconHeight, $medIconWidth, 80vw, 80vh);
+    animation: hover 2s linear infinite alternate none;
+
+  }
+  .icon7 {
+    position: absolute;
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 60vw, 30vh);
+  }
+  .icon8 {
+    position: absolute;
+    @include iconSizeAndPos($medIconHeight, $medIconWidth, 23vw, 50vh);
   }
 }

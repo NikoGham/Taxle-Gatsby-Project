@@ -51,3 +51,11 @@ ORDER: Base + Typography > Generar Layout + Grid > Page Layout > Components
   border-top: 0;
   border-bottom: 0;
 }
+
+// Icon size mixin
+@mixin iconSizeAndPos($h, $w, $left, $top) {
+  height: $h;
+  width: $w;
+  left: $left;
+  top: $top;
+}
