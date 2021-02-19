@@ -48,11 +48,13 @@ const Header = () => {
 
 
         <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={500} distance="30px">
+          <p id="hero-welcome">Welcome to</p>
           <h1 className="hero-title">
             {title} <span className="text-color-main">{name || 'Your Name'}</span>
             <br />
-            {subtitle}
+
           </h1>
+          <h1> {subtitle}</h1>
         </Fade>
         <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
           <p className="hero-cta">
