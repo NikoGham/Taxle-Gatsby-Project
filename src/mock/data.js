@@ -18,9 +18,9 @@ export const heroData = {
 // ABOUT DATA
 export const aboutData = {
 	img: 'profile.jpg',
-	paragraphOne: '',
-	paragraphTwo: '',
-	paragraphThree: '',
+	headerOne: ' Self Assessment Tax Returns',
+	headerTwo: ' Capital Gains',
+	headerThree: ' Self Assessment Registration ',
 	resume: '' // if no resume, the button will not show up
 };
 

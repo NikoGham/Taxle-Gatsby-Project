@@ -23,6 +23,19 @@
       padding-bottom: 5rem;
     }
 
+    #carouselContainerDesk {
+      min-height: 200px;
+    }
+
+    #carouselContainerMob {
+      min-height: 200px;
+    }
+
+    .carouselItemHeader {
+      font-family: jaf-domus, sans-serif;
+      font-weight: bold;
+    }
+
     &__image {
       display: flex;
       height: 100%;
@@ -43,12 +56,13 @@
       justify-content: center;
       flex-direction: column;
 
+
       @include respond(phone) {
         align-items: center;
       }
 
       &-text {
-        text-align: left;
+        text-align: center;
 
         @include respond(tab-port) {
           font-size: 1.5rem;
