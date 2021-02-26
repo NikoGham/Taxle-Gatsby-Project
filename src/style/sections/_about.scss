@@ -24,16 +24,17 @@
     }
 
     #carouselContainerDesk {
-      min-height: 200px;
+      min-height: 250px;
     }
 
     #carouselContainerMob {
-      min-height: 200px;
+      min-height: 250px;
     }
 
     .carouselItemHeader {
-      font-family: jaf-domus, sans-serif;
       font-weight: bold;
+      letter-spacing: 3px;
+      font-size: large;
     }
 
     &__image {
