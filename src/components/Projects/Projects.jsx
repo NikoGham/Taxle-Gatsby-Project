@@ -4,8 +4,7 @@ import { Container } from 'react-bootstrap';
 import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
 import ProjectsItem from './ProjectsItem';
-
-
+import BottomWave from '../../images/smwlBtm.svg';
 
 const Projects = () => {
   const { projects } = useContext(PortfolioContext);
@@ -29,7 +28,7 @@ const Projects = () => {
         <div className="project-wrapper">
           <Title title="How it works." />
           {projects.map((project) => {
-            const { title, info, info2, info3, info4,info5, url, butText, img, id } = project;
+            const { title, info, info2, info3, info4, info5, url, butText, img, id } = project;
 
             return (
               <ProjectsItem

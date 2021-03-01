@@ -42,6 +42,7 @@ const About = () => {
 
   return (
     <section id="about">
+
       <Container>
         <Title title="Services" />
         <Row className="about-wrapper">
