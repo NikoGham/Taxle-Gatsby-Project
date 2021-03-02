@@ -23,8 +23,10 @@ const Contact = () => {
 
             <Form
               name="contact"
-              netlify
-              method="POST">            
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              method="POST"
+            >
               <input type="hidden" name="form-name" value="contact" />
 
               <Form.Group controlId="Name">
