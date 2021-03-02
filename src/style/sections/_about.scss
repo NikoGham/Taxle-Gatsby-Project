@@ -1,24 +1,22 @@
 #about {
-  // background-image: black url(/src/images/smwlTop.svg) no-repeat fixed center;
-  // background-image: linear-gradient(
-  //   135deg,
-  //   $primary-color 0%,
-  //   $secondary-color 100%
-  // );
+  background-image: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    $secondary-color 100%
+  );
   color: $white-color;
   height: 100%;
   border-top: 0px;
-  overflow-x: hidden;
-  background-color: aqua;
-  // -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  // padding-bottom: 10%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  padding-bottom: 10%;
+
+
 
   .section-title {
-    padding-top: 100px;
+    padding-top: 50px;
     margin: 0px;
     margin-bottom: 3.5rem;
-
     font-size: $big-font-size;
     font-weight: 100;
     text-transform: uppercase;
@@ -28,33 +26,22 @@
     }
   }
 
-  #topWaveStyle {
-    position: absolute;
-    transform: scale(1.3);
-    left: 0%;
-    max-width: 100vw;
-  }
+
 
   #brushSVG {
     width: auto;
-    height: 75%;
+    height: 50%;
   }
 
   @include respond(tab-land) {
     height: 100%;
     -webkit-clip-path: none;
     clip-path: none;
-    #topWaveStyle {
-      position: absolute;
-      transform: scaleY(3);
-      top: 100%;
-      left: 0%;
-      width: 100%;
-    }
+
   }
 
   .about-wrapper {
-    height: 750px;
+    height: auto;
 
     @include respond(phone) {
       padding-bottom: 5rem;
@@ -71,7 +58,7 @@
 
     .carouselItemHeader {
       font-weight: bold;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       font-size: large;
     }
 

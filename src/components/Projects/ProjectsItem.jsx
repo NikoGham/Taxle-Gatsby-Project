@@ -24,7 +24,7 @@ const ProjectsItem = ({
         {img === 'Documents' ? (
           <Col lg={6} sm={12}>
             <Fade right={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
-              <div className="thumbnail rounded">{img === 'Documents' ? <Documents /> : null}</div>
+              <div className="thumbnail rounded">{img === 'Documents' ? <Documents className="projectsSVG" /> : null}</div>
             </Fade>
           </Col>
         ) : img === 'Teacup' ? null : (
@@ -60,7 +60,7 @@ const ProjectsItem = ({
         {img ? (
           <Col lg={6} sm={12}>
             <Fade right={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
-              <div className="thumbnail rounded">{img === 'Teacup' ? <Teacup /> : null}</div>
+              <div className="thumbnail rounded">{img === 'Teacup' ? <Teacup className="projectsSVG" /> : null}</div>
             </Fade>
           </Col>
         ) : null}

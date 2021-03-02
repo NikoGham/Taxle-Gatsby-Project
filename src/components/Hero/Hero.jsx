@@ -31,19 +31,21 @@ const Header = () => {
     }
   }, []);
 
+
+
   return (
     <section id="hero" className="jumbotron">
       <Container>
-        <House className="icon1"/>
-        <House2 className="icon2"/>
-        <House3 className="icon3"/>
-        <BlueCross className="icon4"/>
-        <BlueEquals className="icon5"/>
-        <PinkPlus className="icon6"/>
-        <PinkPlus className="icon62"/>
-        <PinkPlus className="icon63"/>
-        <BlueMinus className="icon7"/>
-        <LightBlueEquals className="icon8"/>
+        <House className={isMobile ? "icon1 smallIcon" : "icon1"}/>
+        <House2 className={isMobile ? "icon2 smallIcon" : "icon2"}/>
+        <House3 className={isMobile ? "icon3 smallIcon" : "icon3"}/>
+        <BlueCross className={isMobile ? "icon4 smallIcon" : "icon4"}/>
+        <BlueEquals className={isMobile ? "icon5 smallIcon" : "icon5"}/>
+        <PinkPlus className={isMobile ? "icon6 smallIcon" : "icon6"}/>
+        <PinkPlus className={isMobile ? "icon62 smallIcon" : "icon62"}/>
+        <PinkPlus className={isMobile ? "icon63 smallIcon" : "icon63"}/>
+        <BlueMinus className={isMobile ? "icon7 smallIcon" : "icon7"}/>
+        <LightBlueEquals className={isMobile ? "icon8 smallIcon" : "icon8"}/>
 
 
 

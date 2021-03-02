@@ -54,7 +54,6 @@
 
   h1 {
     font-weight: 500;
-
   }
 
   .hero-cta {
@@ -80,13 +79,16 @@
     }
 
     to {
-      transform: translateY(20px);
+      transform: translateY(40px);
     }
   }
   .icon1 {
     position: absolute;
     @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 30vw, 30vh);
-    animation: hover 5s linear infinite alternate none;
+    animation: hover $medDuration ease-in-out infinite alternate none;
+    @include respond(phone) {
+      @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 25vw, 5vh);
+    }
   }
   .icon2 {
     position: absolute;
@@ -95,7 +97,8 @@
   .icon3 {
     position: absolute;
     @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 75vw, 20vh);
-    animation: hover 3s linear infinite alternate none;
+    animation: hover $longDuration ease-in-out infinite alternate none;
+
   }
   .icon4 {
     position: absolute;
@@ -104,21 +107,24 @@
   .icon5 {
     position: absolute;
     @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 80vw, 47vh);
+    @include respond(phone) {
+      @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 68vw, 5vh);
+    }
   }
   .icon6 {
     position: absolute;
     @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 15vw, 20vh);
-    animation: hover 3s linear infinite alternate none;
+    animation: hover $lowDuration ease-in-out infinite alternate none;
   }
   .icon62 {
     position: absolute;
     @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 15vw, 60vh);
-    animation: hover 3s linear 1s infinite alternate none;
+    animation: hover $longDuration ease-in-out 1s infinite alternate none;
   }
   .icon63 {
     position: absolute;
     @include iconSizeAndPos($medIconHeight, $medIconWidth, 80vw, 80vh);
-    animation: hover 2s linear infinite alternate none;
+    animation: hover $lowDuration ease-in-out infinite alternate none;
   }
   .icon7 {
     position: absolute;
@@ -127,5 +133,15 @@
   .icon8 {
     position: absolute;
     @include iconSizeAndPos($medIconHeight, $medIconWidth, 23vw, 50vh);
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  // class added to component if isMobile is true to reduce size.
+  .smallIcon {
+    width: 10%;
+    height: 10%;
+    opacity: 0.5;
   }
 }

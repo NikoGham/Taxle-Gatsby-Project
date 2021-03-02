@@ -35,11 +35,12 @@ const About = () => {
   // Carousel Data
 
   const [data, setData] = useState({
+    freshCoat: ['High Street Credibility and Quality', 'Online Efficiency and Value', 'Online, Paperless, Contactless'],
     selfAssess: ['For Landlords', 'Non VAT Registered Sole Traders', 'High Earners', 'Investors'],
     capGains: ['Tax Return Disclosure', '30 Day Online Disclosure'],
   });
 
-  const { selfAssess, capGains } = data;
+  const { selfAssess, capGains, freshCoat } = data;
 
   const brush = (
     <Row>
@@ -53,7 +54,6 @@ const About = () => {
   return (
     <section id="about">
       <Container style={{overflow: "hidden"}}>
-        <TopWave id="topWaveStyle" />
         <Title title="Services" />
 
         <Row className="about-wrapper">
@@ -65,6 +65,14 @@ const About = () => {
                 activeIndex={index}
                 onSelect={handleSelect}
               >
+                   <Carousel.Item>
+                  <div className="about-wrapper__info">
+                    <p className="about-wrapper__info-text carouselItemHeader">Tax Compliance with a Fresh Coat of Paint</p>
+                    <p className="about-wrapper__info-text">{freshCoat[1]}</p>
+                    <p className="about-wrapper__info-text">{freshCoat[0]}</p>
+                    <p className="about-wrapper__info-text">{freshCoat[2]}</p>
+                  </div>
+                </Carousel.Item>
                 <Carousel.Item>
                   <div className="about-wrapper__info">
                     <p className="about-wrapper__info-text carouselItemHeader">{headerOne}</p>

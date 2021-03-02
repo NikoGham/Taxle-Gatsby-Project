@@ -10,6 +10,7 @@ const Contact = () => {
   const { cta } = contact;
 
   const margin = 'mb-4';
+
   return (
     <section id="contact">
       <Container>
@@ -78,9 +79,9 @@ const Contact = () => {
                   <Col></Col>
                 </Form.Row>
               </Form.Group>
-              <Button variant="outline-light" size="lg" type="submit">
+              <Button className="cta-btn--hero" id="contact-btn" size="lg" type="submit">
                 {' '}
-                Send
+                SEND
               </Button>
             </Form>
           </div>

@@ -84,3 +84,15 @@
 .up i {
   color: #272727;
 }
+
+#contact-btn {
+  height: 40px;
+  width: 10vw;
+  border-width: 5px;
+
+  -webkit-text-fill-color: white;
+  &:hover {
+    color: $secondary-color;
+    border-width: 3px;
+  }
+}
