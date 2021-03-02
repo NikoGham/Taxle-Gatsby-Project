@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import Fade from 'react-reveal/Fade';
-import { Container } from 'react-bootstrap';
+import { Container, Col, Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
-
 
 const Contact = () => {
   const { contact } = useContext(PortfolioContext);
   const { cta } = contact;
 
+  const margin = 'mb-4';
   return (
     <section id="contact">
       <Container>
@@ -19,9 +20,69 @@ const Contact = () => {
               {cta || 'Would you like to work with me? Awesome!'}
             </p>
             {/* contact form  */}
-            <form method="POST" action="https://getform.io/f/a4d71355-5a16-4c31-bfac-9745b8bcdc41">
-           
-            </form>
+
+            <Form
+              name="contact"
+              netlify
+              method="POST"
+              action="https://getform.io/f/a4d71355-5a16-4c31-bfac-9745b8bcdc41"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+
+              <Form.Group controlId="Name">
+                <Form.Label srOnly>Name</Form.Label>
+                <Form.Row>
+                  <Col></Col>
+                  <Col md={6}>
+                    <Form.Control
+                      name="name"
+                      className={margin}
+                      size="lg"
+                      type="text"
+                      placeholder="Name"
+                    ></Form.Control>
+                  </Col>
+                  <Col></Col>
+                </Form.Row>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label srOnly>Email</Form.Label>
+                <Form.Row>
+                  <Col></Col>
+                  <Col md={6}>
+                    <Form.Control
+                      name="email"
+                      className={margin}
+                      size="lg"
+                      type="email"
+                      placeholder="Email"
+                    ></Form.Control>
+                  </Col>
+                  <Col></Col>
+                </Form.Row>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label srOnly>Message</Form.Label>
+                <Form.Row>
+                  <Col></Col>
+                  <Col md={6}>
+                    <Form.Control
+                      name="message"
+                      className={margin}
+                      size="lg"
+                      as="textarea"
+                      placeholder="Message"
+                      rows={5}
+                    ></Form.Control>
+                  </Col>
+                  <Col></Col>
+                </Form.Row>
+              </Form.Group>
+              <Button variant="outline-light" size="lg" type="submit">
+                {' '}
+                Send
+              </Button>
+            </Form>
           </div>
         </Fade>
       </Container>

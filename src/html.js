@@ -20,6 +20,8 @@ export default function HTML({
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"></link>
         {headComponents}
         <link rel="stylesheet" href="https://use.typekit.net/qis8qwc.css"></link>
       </head>
