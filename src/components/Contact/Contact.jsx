@@ -29,7 +29,7 @@ const Contact = () => {
             >
               <input type="hidden" name="form-name" value="contact" />
 
-              <Form.Group controlId="Name">
+              <Form.Group controlId="name">
                 <Form.Label srOnly>Name</Form.Label>
                 <Form.Row>
                   <Col></Col>
@@ -61,7 +61,7 @@ const Contact = () => {
                   <Col></Col>
                 </Form.Row>
               </Form.Group>
-              <Form.Group controlId="email">
+              <Form.Group controlId="message">
                 <Form.Label srOnly>Message</Form.Label>
                 <Form.Row>
                   <Col></Col>
