@@ -1,6 +1,6 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import Teacup from '../../images/teacup.svg';
 import Documents from '../../images/documents.svg';
 
@@ -19,8 +19,8 @@ const ProjectsItem = ({
   isMobile,
 }) => {
   return (
-    <>
-      <Row key={id}>
+    <Container>
+      <Row >
         {img === 'Documents' ? (
           <Col lg={6} sm={12}>
             <Fade right={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
@@ -65,7 +65,7 @@ const ProjectsItem = ({
           </Col>
         ) : null}
       </Row>
-    </>
+    </Container >
   );
 };
 

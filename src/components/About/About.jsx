@@ -5,6 +5,7 @@ import Title from '../Title/Title';
 import PortfolioContext from '../../context/context';
 import Paintbrush from '../../images/paintbrush.svg';
 import Carousel from 'react-bootstrap/Carousel';
+import TopWave from '../../images/smwlTop.svg';
 
 const About = () => {
   const { about } = useContext(PortfolioContext);
@@ -40,19 +41,23 @@ const About = () => {
 
   const { selfAssess, capGains } = data;
 
+  const brush = (
+    <Row>
+    <Col sm={3}>
+      <Paintbrush id="brushSVG" />
+    </Col>
+    <Col></Col>
+  </Row>
+  )
+
   return (
     <section id="about">
-
-      <Container>
+      <Container style={{overflow: "hidden"}}>
+        <TopWave id="topWaveStyle" />
         <Title title="Services" />
+
         <Row className="about-wrapper">
-          {/* <Col md={2} sm={12}>
-            <Fade bottom duration={1000} delay={600} distance="30px">
-              <div className="about-wrapper__image">
-                <Paintbrush />
-              </div>
-            </Fade>
-          </Col> */}
+
           <Col md={12} sm={12}>
             <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
               <Carousel
@@ -88,6 +93,7 @@ const About = () => {
               </Carousel>
             </Fade>
           </Col>
+          {isDesktop ? brush : null}
         </Row>
       </Container>
     </section>

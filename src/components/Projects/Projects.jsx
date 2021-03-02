@@ -4,7 +4,6 @@ import { Container } from 'react-bootstrap';
 import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
 import ProjectsItem from './ProjectsItem';
-import BottomWave from '../../images/smwlBtm.svg';
 
 const Projects = () => {
   const { projects } = useContext(PortfolioContext);
@@ -32,6 +31,7 @@ const Projects = () => {
 
             return (
               <ProjectsItem
+                key={id}
                 title={title}
                 info={info}
                 info2={info2}
@@ -41,7 +41,6 @@ const Projects = () => {
                 url={url}
                 butText={butText}
                 img={img}
-                id={id}
                 isDesktop={isDesktop}
                 isMobile={isMobile}
               />
