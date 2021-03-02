@@ -24,9 +24,7 @@ const Contact = () => {
             <Form
               name="contact"
               netlify
-              method="POST"
-              action="https://getform.io/f/a4d71355-5a16-4c31-bfac-9745b8bcdc41"
-            >
+              method="POST">            >
               <input type="hidden" name="form-name" value="contact" />
 
               <Form.Group controlId="Name">
