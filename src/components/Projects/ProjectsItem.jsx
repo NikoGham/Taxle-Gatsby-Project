@@ -1,8 +1,9 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
 import { Row, Col, Container } from 'react-bootstrap';
-import Teacup from '../../images/teacup.svg';
-import Documents from '../../images/documents.svg';
+import { Link } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
+
 
 const ProjectsItem = ({
   title,
@@ -14,17 +15,24 @@ const ProjectsItem = ({
   url,
   butText,
   img,
-  id,
   isDesktop,
   isMobile,
 }) => {
   return (
     <Container>
-      <Row >
+      <Row>
         {img === 'Documents' ? (
           <Col lg={6} sm={12}>
             <Fade right={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
-              <div className="thumbnail rounded">{img === 'Documents' ? <Documents className="projectsSVG" /> : null}</div>
+              <div className="thumbnail rounded">
+                {img === 'Documents' && isDesktop ?  <StaticImage
+                  placeholder="blurred"
+                  src="../../images/documents.svg"
+                  alt="documents"
+                  objectFit="contain"
+                  style={{float:"left"}}
+                /> : null}
+              </div>
             </Fade>
           </Col>
         ) : img === 'Teacup' ? null : (
@@ -42,15 +50,10 @@ const ProjectsItem = ({
                 <p className="mb-4">{info5 || null}</p>
               </div>
               {butText ? (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cta-btn cta-btn--hero"
-                  href={url || '#!'}
-                >
+                <Link to="/quest" className="cta-btn cta-btn--hero">
                   {' '}
                   {butText}{' '}
-                </a>
+                </Link>
               ) : null}
             </div>
           </Fade>
@@ -60,12 +63,19 @@ const ProjectsItem = ({
         {img ? (
           <Col lg={6} sm={12}>
             <Fade right={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
-              <div className="thumbnail rounded">{img === 'Teacup' ? <Teacup className="projectsSVG" /> : null}</div>
+              <div className="thumbnail rounded">
+                {img === 'Teacup' && isDesktop ? <StaticImage
+                  placeholder="blurred"
+                  src="../../images/teacup.svg"
+                  alt="teacup"
+                  objectFit="contain"
+                /> : null}
+              </div>
             </Fade>
           </Col>
         ) : null}
       </Row>
-    </Container >
+    </Container>
   );
 };
 

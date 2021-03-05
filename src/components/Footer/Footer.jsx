@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Container } from 'react-bootstrap';
-import { Link } from 'react-scroll';
-import PortfolioContext from '../../context/context';
+import { Link } from 'gatsby';
 
+import { Container, Row, Col } from 'react-bootstrap';
+// import { Link } from 'react-scroll';
+import PortfolioContext from '../../context/context';
 
 const Footer = () => {
   const { footer } = useContext(PortfolioContext);
@@ -12,32 +13,29 @@ const Footer = () => {
     <footer className="footer navbar-static-bottom">
       <Container>
         <span className="back-to-top">
-          <Link to="hero" smooth duration={1000}>
+          {/* <Link to="hero" smooth duration={1000}>
             <i className="fa fa-angle-up fa-2x" aria-hidden="true" />
-          </Link>
+          </Link> */}
         </span>
-        <div className="social-links">
-          {networks &&
-            networks.map((network) => {
-              const { id, name, url } = network;
-              return (
-                <a
-                  key={id}
-                  href={url}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  aria-label={name}
-                >
-                  <i className={`fa fa-${name || 'refresh'} fa-inverse`} />
-                </a>
-              );
-            })}
-        </div>
         <hr />
-        <p className="footer__text">
-
-        </p>
-
+        <Row className="justify-content-center">
+          <Col sm="auto">
+            {' '}
+            <Link to="/privacy">
+              <p className="footer__text">Privacy Policy</p>
+            </Link>
+          </Col>
+          <Col sm="auto">
+            <Link to="/">
+              <p className="footer__text">Careers</p>
+            </Link>
+          </Col>
+          <Col sm="auto">
+            <Link to="/">
+              <p className="footer__text">Terms and Conditions</p>
+            </Link>
+          </Col>
+        </Row>
       </Container>
     </footer>
   );

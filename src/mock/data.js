@@ -72,9 +72,26 @@ export const projectsData = [
 
 // CONTACT DATA
 export const contactData = {
-	cta: '',
+	cta: 'Want to know more?',
 	btn: '',
-	email: ''
+	email: '',
+	networks: [
+		{
+			id: nanoid(),
+			name: 'instagram',
+			url: ''
+		},
+		{
+			id: nanoid(),
+			name: 'linkedin',
+			url: ''
+		},
+		{
+			id: nanoid(),
+			name: 'facebook',
+			url: ''
+		}
+	]
 };
 
 // FOOTER DATA

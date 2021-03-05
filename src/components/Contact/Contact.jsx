@@ -7,18 +7,18 @@ import Title from '../Title/Title';
 
 const Contact = () => {
   const { contact } = useContext(PortfolioContext);
-  const { cta } = contact;
+  const { cta, networks } = contact;
 
   const margin = 'mb-4';
 
   return (
     <section id="contact">
       <Container>
-        <Title title="Contact" />
+        <Title title="" />
         <Fade bottom duration={1000} delay={800} distance="30px">
           <div className="contact-wrapper">
             <p className="contact-wrapper__text">
-              {cta || 'Would you like to work with me? Awesome!'}
+              {cta}
             </p>
             {/* contact form  */}
 
@@ -79,12 +79,24 @@ const Contact = () => {
                   <Col></Col>
                 </Form.Row>
               </Form.Group>
-              <Button className="cta-btn--hero" id="contact-btn" size="lg" type="submit">
+
+            <Button className="cta-btn cta-btn--hero" size="lg" type="submit">
                 {' '}
                 SEND
               </Button>
             </Form>
           </div>
+          <div className="social-links">
+          {networks &&
+            networks.map((network) => {
+              const { id, name, url } = network;
+              return (
+                <a key={id} href={url} rel="noopener noreferrer" target="_blank" aria-label={name}>
+                  <i className={`fa fa-${name || 'refresh'} fa-inverse`} />
+                </a>
+              );
+            })}
+        </div>
         </Fade>
       </Container>
     </section>

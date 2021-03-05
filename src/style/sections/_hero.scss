@@ -7,7 +7,7 @@
   background: $white-color;
   font-weight: 400;
   color: $dark-blue-text;
-  padding: 0rem 5.6rem;
+  padding: 0rem 4.6rem;
   margin-bottom: 0;
   top: 0;
   left: 0;
@@ -26,11 +26,32 @@
   }
 
   .hero-title {
-    font-size: 11.2rem;
+    font-size: 15.2rem;
     text-align: center;
     font-family: jaf-domus, sans-serif;
-    font-weight: 800;
     font-style: normal;
+
+    @include respond(tab-land) {
+      font-size: 4rem;
+    }
+    @include respond(tab-port) {
+      font-size: 3.6rem;
+      text-align: center;
+    }
+    @include respond(phone) {
+      font-size: 3.5rem;
+      line-height: 1.5;
+    }
+    @include respond(phone-xs) {
+      font-size: 2.8rem;
+    }
+  }
+
+  #subtitleHero {
+    font-display: block;
+    letter-spacing: 1px;
+    margin-bottom: 4rem;
+
 
     @include respond(tab-land) {
       font-size: 4rem;
@@ -50,10 +71,12 @@
 
   #hero-welcome {
     color: grey;
+    font-weight: 100;
   }
 
   h1 {
-    font-weight: 500;
+    font-weight: 10;
+    font-size: 2.82rem;
   }
 
   .hero-cta {
@@ -84,7 +107,7 @@
   }
   .icon1 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 30vw, 30vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 25vw, 30vh);
     animation: hover $medDuration ease-in-out infinite alternate none;
     @include respond(phone) {
       @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 25vw, 5vh);
@@ -92,47 +115,50 @@
   }
   .icon2 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 65vw, 60vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 70vw, 60vh);
   }
   .icon3 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 75vw, 20vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 85vw, 20vh);
     animation: hover $longDuration ease-in-out infinite alternate none;
-
   }
   .icon4 {
     position: absolute;
     @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 30vw, 78vh);
   }
+  .icon41 {
+    position: absolute;
+    @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 30vw, 8vh);
+  }
   .icon5 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 80vw, 47vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 78vw, 40vh);
     @include respond(phone) {
       @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 68vw, 5vh);
     }
   }
   .icon6 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 15vw, 20vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 10vw, 14vh);
     animation: hover $lowDuration ease-in-out infinite alternate none;
   }
   .icon62 {
     position: absolute;
-    @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 15vw, 60vh);
+    @include iconSizeAndPos($smlIconHeight, $smlIconWidth, 10vw, 70vh);
     animation: hover $longDuration ease-in-out 1s infinite alternate none;
   }
   .icon63 {
     position: absolute;
-    @include iconSizeAndPos($medIconHeight, $medIconWidth, 80vw, 80vh);
+    @include iconSizeAndPos($medIconHeight, $medIconWidth, 84vw, 80vh);
     animation: hover $lowDuration ease-in-out infinite alternate none;
   }
   .icon7 {
     position: absolute;
-    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 60vw, 30vh);
+    @include iconSizeAndPos($bigIconHeight, $bigIconWidth, 70vw, 10vh);
   }
   .icon8 {
     position: absolute;
-    @include iconSizeAndPos($medIconHeight, $medIconWidth, 23vw, 50vh);
+    @include iconSizeAndPos($medIconHeight, $medIconWidth, 20vw, 50vh);
     @include respond(phone) {
       display: none;
     }

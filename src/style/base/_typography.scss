@@ -5,7 +5,7 @@ h1 {
 }
 
 p,
-a {
+a, li {
   font-family: 'Montserrat', sans-serif;
   font-size: $default-font-size;
 }
@@ -40,9 +40,10 @@ a:hover {
 }
 
 .text-color-main {
-  background-image: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  background-image: linear-gradient(135deg, $primary-color 25%, $secondary-color 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: 8px;
 
   // Responsive text purple style
   @include respond(phone) {
