@@ -5,13 +5,10 @@ module.exports = {
 
   plugins: [
     {
-      resolve: `gatsby-plugin-gtag`,
+      resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // your google analytics tracking id
         trackingId: `UA-191540778-1`,
-        // Puts tracking script in the head instead of the body
         head: true,
-        // enable ip anonymization
         anonymize: true,
       },
     },
