@@ -1,5 +1,5 @@
-import {createContext} from 'react'
+import React from 'react'
 
-const questionContext = createContext()
+const questionContext = React.createContext()
 
 export default questionContext
