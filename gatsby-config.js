@@ -1,4 +1,8 @@
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://www.taxle.tax`,
+  },
+
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
@@ -6,6 +10,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

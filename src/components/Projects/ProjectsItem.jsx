@@ -50,7 +50,7 @@ const ProjectsItem = ({
                 <p className="mb-4">{info5 || null}</p>
               </div>
               {butText ? (
-                <Link to="/quest" className="cta-btn cta-btn--hero">
+                <Link to="/questionnaire" className="cta-btn cta-btn--hero">
                   {' '}
                   {butText}{' '}
                 </Link>

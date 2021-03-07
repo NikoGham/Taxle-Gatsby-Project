@@ -2,9 +2,9 @@ import { nanoid } from 'nanoid';
 
 // HEAD DATA
 export const headData = {
-	title: 'Taxle', // e.g: 'Name | Developer'
-	lang: '', // e.g: en, es, fr, jp
-	description: ' Tax for Landlords' // e.g: Welcome to my website
+	title: 'Taxle | Tax For Landlords', // e.g: 'Name | Developer'
+	lang: 'en', // e.g: en, es, fr, jp
+	description: ' Tax Returns Specialised for Landlords and Sole Traders' // e.g: Welcome to my website
 };
 
 // HERO DATA
