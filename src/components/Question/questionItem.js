@@ -5,14 +5,22 @@ import Form from 'react-bootstrap/Form';
 
 const questionItem = () => {
   return (
-    <Form.Row>
-      <Col>
-        <Form.Control size="lg" placeholder="First name" />
-      </Col>
-      <Col>
-        <Form.Control size="lg" placeholder="Last name" />
-      </Col>
-    </Form.Row>
+    <Container>
+      <Form.Row>
+        <Col>
+          <Form.Control className="mb-3" size="lg" placeholder="First name" />
+        </Col>
+        <Col>
+          <Form.Control className="mb-3" size="lg" placeholder="Last name" />
+        </Col>
+      </Form.Row>
+
+      <Form.Row>
+        <Col>
+          <Form.Control className="mb-3" size="lg" type="email" placeholder="Email" required />
+        </Col>
+      </Form.Row>
+    </Container>
   );
 };
 

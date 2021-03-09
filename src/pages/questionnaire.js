@@ -41,15 +41,14 @@ export default () => {
             </h1>
           </Fade>
           <Fade bottom duration={1000} delay={1000} distance="30px">
-          <p className="hero-cta justify-content-center">
-
-            <button
-              onClick={() => setHideQuestions(!hideQuestions)}
-              className={hideQuestions ? 'cta-btn cta-btn--hero' : 'hide'}
-              to="#!"
-            >
-              Start
-            </button>
+            <p className="hero-cta justify-content-center">
+              <button
+                onClick={() => setHideQuestions(!hideQuestions)}
+                className={hideQuestions ? 'cta-btn cta-btn--hero' : 'hide'}
+                to="#!"
+              >
+                Start
+              </button>
             </p>
           </Fade>
           <Row className={hideQuestions ? 'hide' : null}>
@@ -59,10 +58,11 @@ export default () => {
               </Fade>
             </Col>
           </Row>
-          <Row style={{justifyContent: "center", position: "absolute", bottom: "0px"}}>
+          <Row style={{ justifyContent: 'center', position: 'absolute', bottom: '0px' }}>
             <p className="hero-cta justify-content-center">
               <Link className="cta-btn cta-btn--hero" to="/">
-                Go back
+                <span class="material-icons arrows">double_arrow</span>
+                Go Back
               </Link>
             </p>
           </Row>
