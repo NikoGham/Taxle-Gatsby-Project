@@ -1,9 +1,14 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Col } from 'react-bootstrap';
 
 import Form from 'react-bootstrap/Form';
 
-const questionItem = () => {
+const questionItem = ({
+
+  jobNature,
+
+  natureOfTrade,
+}) => {
   return (
     <Container>
       <Form.Row>
@@ -16,9 +21,11 @@ const questionItem = () => {
       </Form.Row>
 
       <Form.Row>
-        <Col>
+        <Col />
+        <Col md={6}>
           <Form.Control className="mb-3" size="lg" type="email" placeholder="Email" required />
         </Col>
+        <Col />
       </Form.Row>
     </Container>
   );
