@@ -1,47 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 
-const questionItem = ({
-  residency,
-  trRequ,
-  firstTr,
-  accountant,
-  futureTrReq,
-  rentalProperty,
-  noOfRentals,
-  ownershipRental,
-  ownershipRentals,
-  letAgent,
-  employed,
-  soi,
-  investments,
-  selfEmp,
-  highEarners,
-  propCapGains,
-  propSaleDetails,
-  otherCapGains,
-}) => {
-  if (selfEmp) {
-    return (
-      <Container>
-        <Form.Row>
-            <Col />
-          {['radio'].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <p>Are you self employed?</p>{' '}
-              <Form.Check inline label="Yes" type={type} id={`inline-${type}-1`} />
-              <Form.Check inline label="No" type={type} id={`inline-${type}-2`} />
-            </div>
-          ))}
-          <Col />
-        </Form.Row>
-      </Container>
-    );
-  } else {
-    return null;
-  }
+const questionItem = ({ section, appear }) => {
+  // Hide the not sure question?
+  const [notSureHide, setNotSureHide] = useState(true);
+  // state to record the value of the check box
+  const [stateCheck, setStateCheck] = useState({
+    yes: false,
+    no: false,
+    notSure: false,
+  });
+
+  // pull out of state
+  const { yes, no, notSure } = stateCheck;
+
+  // different onChange functions to update state.
+  // Need to think of way to evaluate this into one function.
+
+  const onChange = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !yes });
+  const onChangeNo = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !no });
+  const onChangeNS = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !notSure });
+
+  // type of check box
+  const type = 'checkbox';
+
+  return (
+    <Container className={appear ? "null" : "hide" }>
+      <Form.Row>
+        <Col />
+        <Col md={6}>
+          <p> {section.title}</p>
+
+          <br />
+          <Form.Check
+            className="formCheckStyle"
+            inline
+            name="yes"
+            label="Yes"
+            type={type}
+            id={`inline-${type}-1`}
+            onChange={onChange}
+          />
+          <Form.Check
+            className="formCheckStyle"
+            inline
+            name="no"
+            label="No"
+            type={type}
+            id={`inline-${type}-2`}
+            onChange={onChangeNo}
+          />
+          <Form.Check
+            className="formCheckStyle"
+            inline
+            name="not sure"
+            label="Not Sure"
+            type={type}
+            id={`inline-${type}-3`}
+            className={notSureHide ? 'hide' : null}
+            onChange={onChangeNS}
+          />
+        </Col>
+
+        <Col />
+      </Form.Row>
+    </Container>
+  );
 };
 
+questionItem.propTypes = {
+  section: PropTypes.object.isRequired,
+};
 export default questionItem;

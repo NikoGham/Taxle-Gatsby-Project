@@ -40,6 +40,12 @@ export default () => {
               </span>
             </h1>
           </Fade>
+          <Fade bottom duration={1000} delay={500} distance="30px">
+            <h3 className={hideQuestions ? 'hero-title text-center' : 'hide'}>
+              Fill in this questionnaire to give us the information we need to give you an initial
+              quote. And it all goes from there...
+            </h3>
+          </Fade>
           <Fade bottom duration={1000} delay={1000} distance="30px">
             <p className="hero-cta justify-content-center">
               <button
@@ -61,7 +67,7 @@ export default () => {
           <Row style={{ justifyContent: 'center', position: 'absolute', bottom: '0px' }}>
             <p className="hero-cta justify-content-center">
               <Link className="cta-btn cta-btn--hero" to="/">
-                <span class="material-icons arrows">double_arrow</span>
+                <span className="material-icons arrows">double_arrow</span>
                 Go Back
               </Link>
             </p>
