@@ -27,6 +27,8 @@ const questionItem = ({ section, appear }) => {
   // type of check box
   const type = 'checkbox';
 
+  console.log(section)
+
   return (
     <Container className={appear ? "null" : "hide" }>
       <Form.Row>
