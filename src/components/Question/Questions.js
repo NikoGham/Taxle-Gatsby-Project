@@ -1,218 +1,232 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import QuestionItem from './questionItem';
-import QuestionCheckbox from './questionChecksbox';
+import QuestionCheckbox from './questionCheckbox';
 
 const Questions = () => {
-  const [qState, setFormState] = useState({
-    mailingList: {
+  const [qState, setFormState] = useState([
+    {
+      name: 'mailingList',
       title: 'Are you happy to be added to my mailing list?',
       appear: true,
       value: '',
+      key: 1,
     },
+    {
+      name: 'residency',
 
-    residency: {
       title: 'Are you a UK resident?',
       appear: false,
       value: [],
+      key: 2,
     },
 
-    trRequ: {
+    {
+      name: 'trReq',
+
       title: 'Do you need a tax return prepared for the year to the 5th April?',
       appear: false,
       value: [],
+      key: 3,
     },
 
-    firstTr: {
+    {
+      name: 'firstTr',
       title: 'Is this the first tax return you will have prepared?',
       appear: false,
       value: [],
+      key: 4,
     },
 
-    accountant: {
+    {
+      name: 'accountant',
       title: 'Do you have an accountant or tax adviser at the moment?',
       appear: false,
       value: [],
+      key: 5,
     },
 
-    futureTrReq: {
+    {
+      name: 'futureTr',
       title: 'Do you need a tax return prepared for the year to 5th April 2022?',
       appear: false,
       value: [],
+      key: 6,
     },
 
-    rentalProperty: {
+    {
+      name: 'rentalProperty',
       title: 'Do you own a rental property?',
       appear: false,
       value: [],
+      key: 7,
     },
 
-    noOfRentals: {
+    {
+      name: 'noOfRentals',
       title: 'How many rental properties do you own?',
       appear: false,
       value: [],
+      key: 8,
     },
+    {
+      name: 'ownershipRental',
 
-    ownershipRental: {
       title: 'Do you own the rental property solely or jointly??',
       appear: false,
       value: [],
+      key: 9,
     },
+    {
+      name: 'ownershipRentals',
 
-    ownershipRentals: {
       title: 'Do you own the rental properties solely, jointly or a mixture of the two?',
       appear: false,
       value: [],
+      key: 10,
     },
+    { name: 'letAgent', title: 'Do you have a letting agent?', appear: false, value: [], key: 11 },
 
-    letAgent: {
-      title: 'Do you have a letting agent?',
-      appear: false,
+    {
+      name: 'employed',
 
-      value: [],
-    },
-
-    employed: {
       title: 'Are you employed?',
       appear: false,
       value: [],
+      key: 12,
     },
 
-    jobNature: {
+    {
+      name: 'jobNature',
+
       title: 'What do you do for a living?',
       appear: false,
       value: [],
+      key: 13,
     },
 
-    soi: {
+    {
+      name: 'soi',
+
       title: 'Do you receive a pension?',
       appear: false,
       value: [],
+      key: 14,
     },
 
-    investments: {
+    {
+      name: 'investments',
+
       title: 'Do you have income from investments (dividends)?',
       appear: false,
       value: [],
+      key: 15,
     },
 
-    broker: {
+    {
+      name: 'broker',
+
       title: 'Are your investments managed by a broker?',
       appear: false,
       value: [],
+      key: 16,
     },
 
-    selfEmp: {
-      title: 'Are you self-employed?',
-      appear: false,
-      value: [],
-    },
+    { name: 'selfEmp', title: 'Are you self-employed?', appear: false, value: [], key: 17 },
 
-    natureOfTrade: {
+    {
+      name: 'natureOfTrade',
       title: 'What is the nature of your trade?',
       appear: false,
       value: [],
+      key: 18,
     },
 
-    highEarners: {
+    {
+      name: 'highEarners',
       title: 'Do you earn over £50,000 a year?',
       appear: false,
       value: [],
+      key: 19,
     },
 
-    propCapGains: {
+    {
+      name: 'propCapGains',
       title: 'Have you sold a property recently and need to let HMRC know?',
       appear: false,
       value: [],
+      key: 20,
     },
-
-    propSaleDetails: {
+    {
+      name: 'propSaleDetails',
       title: 'When did the property sale complete?',
       appear: false,
       value: [],
+      key: 21,
     },
-
-    otherCapGains: {
+    {
+      name: 'otherCapGains',
       title: 'Have you sold any other assets that HMRC may need to know about?',
       appear: false,
       value: [],
+      key: 22,
     },
-    thankYouNote: false,
-  });
+  ]);
 
-  const {
-    mailingList,
-    residency,
-    trRequ,
-    firstTr,
-    accountant,
-    futureTrReq,
-    rentalProperty,
-    noOfRentals,
-    ownershipRental,
-    ownershipRentals,
-    letAgent,
-    employed,
-    jobNature,
-    soi,
-    investments,
-    selfEmp,
-    natureOfTrade,
-    highEarners,
-    propCapGains,
-    propSaleDetails,
-    otherCapGains,
-    thankYouNote,
-  } = qState;
+  // Checkbox Questions state filter
 
-  let helper = <h3> Lets get this show on the road... First the basics: </h3>;
+  const showCheckQuestions = qState.filter((items) => items.appear);
 
-  // const listNo = Object.keys(qState).length;
-
-  // for (let i = 0; i < listNo; i++) {
-  //   Object.keys(qState);
-  // }
-
-  const arrSections = [];
-
-  // for(let i =0 ; i<qState.length; i++) {
-  //   let obj = qState[i]
-  //   console.log(obj)
-  //   for(var prop in obj){
-  // arrSections.push(prop)
-  //     }
-  // }
-
-  for (let prop in qState) {
-    arrSections.push(qState[prop]);
-  }
-
-  useEffect(() => {
-    for (let prop in qState) {
-      arrSections.push(qState[prop]);
-    }
-    console.log('reloaded');
-  }, [qState]);
 
   const onClick = () => {
-    setFormState({
-      ...qState,
-      residency: {
-        title: residency.title,
-        appear: !residency.appear,
-      },
-    });
+
   };
 
+
+
+  // Text Question State
+  const [textQstate, setTextQstate] = useState([
+    {
+      name: 'basics',
+      key: 1,
+      appear: true,
+    },
+    {
+      name: 'jobNature',
+      key: 2,
+      appear: false,
+    },
+    {
+      name: 'basics',
+      key: 3,
+      appear: false,
+    },
+  ]);
+
+  const showTextQuestions = textQstate.filter((items) => items.appear);
+
+  // thank you note state
+  const [thankYouNote] = useState(false);
+
   return (
-    <Form>
-      {helper}
-      <QuestionItem />
-      {arrSections.map((el) => (
-        <QuestionCheckbox section={el} key={el.title} appear={el.appear} />
+    <Form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" method="POST">
+      <input type="hidden" name="form-name" value="questionnaire" />
+      <h3>Lets get started</h3>
+
+      {showTextQuestions.map((textQ) => (
+        <QuestionItem appear={textQ.appear} key={textQ.key} />
       ))}
 
-      <button onClick={onClick}>Test</button>
+      {showCheckQuestions.map((el) => (
+        <QuestionCheckbox section={el} key={el.key} appear={el.appear} />
+      ))}
+
+      <p className="hero-cta">
+        <button className="cta-btn cta-btn--hero mt-5" onClick={onClick}>
+          {' '}
+          Next...{' '}
+        </button>
+      </p>
 
       <p className="hero-cta">
         <button className="cta-btn cta-btn--hero hide " type="submit">

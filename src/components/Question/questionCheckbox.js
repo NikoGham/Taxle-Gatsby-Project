@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 
-const questionItem = ({ section, appear }) => {
+const questionCheckbox = ({ section, appear }) => {
   // Hide the not sure question?
   const [notSureHide, setNotSureHide] = useState(true);
   // state to record the value of the check box
@@ -20,17 +20,16 @@ const questionItem = ({ section, appear }) => {
   // different onChange functions to update state.
   // Need to think of way to evaluate this into one function.
 
-  const onChange = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !yes });
-  const onChangeNo = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !no });
-  const onChangeNS = (e) => setStateCheck({ ...stateCheck, [e.target.name]: !notSure });
+  const onChange = (e) => setStateCheck({ ...stateCheck, yes: !yes });
+  const onChangeNo = (e) => setStateCheck({ ...stateCheck, no: !no });
+  const onChangeNS = (e) => setStateCheck({ ...stateCheck, notSure: !notSure });
 
   // type of check box
   const type = 'checkbox';
 
-  console.log(section)
 
   return (
-    <Container className={appear ? "null" : "hide" }>
+    <Container className={appear ? 'null' : 'hide'}>
       <Form.Row>
         <Col />
         <Col md={6}>
@@ -73,7 +72,7 @@ const questionItem = ({ section, appear }) => {
   );
 };
 
-questionItem.propTypes = {
-  section: PropTypes.object.isRequired,
+questionCheckbox.propTypes = {
+  appear: PropTypes.bool,
 };
-export default questionItem;
+export default questionCheckbox;
