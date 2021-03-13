@@ -25,7 +25,7 @@ const questionCheckbox = ({ section, appear }) => {
   const onChangeNS = (e) => setStateCheck({ ...stateCheck, notSure: !notSure });
 
   // type of check box
-  const type = 'checkbox';
+  const type = 'radio';
 
 
   return (

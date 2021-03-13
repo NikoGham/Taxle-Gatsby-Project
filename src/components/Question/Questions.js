@@ -175,14 +175,17 @@ const Questions = () => {
 
   // Checkbox Questions state filter
 
-  const showCheckQuestions = qState.filter((items) => items.appear);
-
-
-  const onClick = () => {
-
+  const onClick = (i) => {
+    let newArr = [...qState];
+    newArr[i].appear = true;
+    setFormState(newArr);
   };
 
-
+  const mailUpdate = () => {
+    let newArr = [...qState];
+    newArr[1].appear = true;
+    setFormState(newArr);
+  };
 
   // Text Question State
   const [textQstate, setTextQstate] = useState([
@@ -190,20 +193,28 @@ const Questions = () => {
       name: 'basics',
       key: 1,
       appear: true,
+      firstName: null,
+      lastNme: null,
+      email: null,
     },
     {
       name: 'jobNature',
       key: 2,
       appear: false,
+      value: null,
     },
     {
       name: 'basics',
       key: 3,
       appear: false,
+      value: null,
     },
   ]);
 
-  const showTextQuestions = textQstate.filter((items) => items.appear);
+  const onChangeBasics = (e) => {
+    setTextQstate({ ...textQstate, [e.target.name]: e.target.value });
+    console.log(textQstate);
+  };
 
   // thank you note state
   const [thankYouNote] = useState(false);
@@ -212,22 +223,30 @@ const Questions = () => {
     <Form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" method="POST">
       <input type="hidden" name="form-name" value="questionnaire" />
       <h3>Lets get started</h3>
-
-      {showTextQuestions.map((textQ) => (
-        <QuestionItem appear={textQ.appear} key={textQ.key} />
+      <QuestionItem
+        section={textQstate[0]}
+        appear={textQstate[0].appear}
+        key={textQstate[0].key}
+        onChange={onChangeBasics}
+      />
       ))}
-
-      {showCheckQuestions.map((el) => (
-        <QuestionCheckbox section={el} key={el.key} appear={el.appear} />
+      {qState.map((section) => (
+        <QuestionCheckbox section={section} appear={section.appear} key={section.key} />
       ))}
-
       <p className="hero-cta">
-        <button className="cta-btn cta-btn--hero mt-5" onClick={onClick}>
+        <button
+          className="cta-btn cta-btn--hero mt-5"
+          onClick={mailUpdate}
+          // onClick={() => {
+          //   let newArr = [...qState];
+          //   newArr[1].appear = true;
+          //   setFormState(newArr);
+          // }}
+        >
           {' '}
           Next...{' '}
         </button>
       </p>
-
       <p className="hero-cta">
         <button className="cta-btn cta-btn--hero hide " type="submit">
           {' '}

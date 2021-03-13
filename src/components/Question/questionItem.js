@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 import Form from 'react-bootstrap/Form';
 
-const questionItem = ({ section, appear }) => {
+const questionItem = ({ section, appear, onChange}) => {
   return (
     <Container className={appear ? 'null' : 'hide'}>
       <Form.Row>
         <Col>
           <Form.Label srOnly></Form.Label>
-          <Form.Control className="mb-3" size="lg" placeholder="First name" required />
+          <Form.Control className="mb-3" size="lg" placeholder="First name" name="firstName" required onChange={onChange}/>
         </Col>
         <Col>
           <Form.Label srOnly></Form.Label>
