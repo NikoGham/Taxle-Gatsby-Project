@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-
+import Fade from 'react-reveal/Fade';
 import Form from 'react-bootstrap/Form';
 
 const questionCheckbox = ({ section, appear }) => {
@@ -27,47 +27,48 @@ const questionCheckbox = ({ section, appear }) => {
   // type of check box
   const type = 'radio';
 
-
   return (
     <Container className={appear ? 'null' : 'hide'}>
-      <Form.Row>
-        <Col />
-        <Col md={6}>
-          <p> {section.title}</p>
+      <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
+        <Form.Row>
+          <Col />
+          <Col md={6}>
+            <p> {section.title}</p>
 
-          <br />
-          <Form.Check
-            className="formCheckStyle"
-            inline
-            name="yes"
-            label="Yes"
-            type={type}
-            id={`inline-${type}-1`}
-            onChange={onChange}
-          />
-          <Form.Check
-            className="formCheckStyle"
-            inline
-            name="no"
-            label="No"
-            type={type}
-            id={`inline-${type}-2`}
-            onChange={onChangeNo}
-          />
-          <Form.Check
-            className="formCheckStyle"
-            inline
-            name="not sure"
-            label="Not Sure"
-            type={type}
-            id={`inline-${type}-3`}
-            className={notSureHide ? 'hide' : null}
-            onChange={onChangeNS}
-          />
-        </Col>
+            <br />
+            <Form.Check
+              className="formCheckStyle"
+              inline
+              name="yes"
+              label="Yes"
+              type={type}
+              id={`inline-${type}-1`}
+              onChange={onChange}
+            />
+            <Form.Check
+              className="formCheckStyle"
+              inline
+              name="no"
+              label="No"
+              type={type}
+              id={`inline-${type}-2`}
+              onChange={onChangeNo}
+            />
+            <Form.Check
+              className="formCheckStyle"
+              inline
+              name="not sure"
+              label="Not Sure"
+              type={type}
+              id={`inline-${type}-3`}
+              className={notSureHide ? 'hide' : null}
+              onChange={onChangeNS}
+            />
+          </Col>
 
-        <Col />
-      </Form.Row>
+          <Col />
+        </Form.Row>
+      </Fade>
     </Container>
   );
 };

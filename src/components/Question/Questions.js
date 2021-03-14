@@ -287,7 +287,7 @@ const Questions = () => {
         ) : (
           <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
             {' '}
-            Next..1.{' '}
+            Next...{' '}
           </button>
         )}
       </p>
