@@ -173,8 +173,22 @@ const Questions = () => {
     },
   ]);
 
-  // Checkbox Questions state filter
+  // Find the array index of any objexts which are set to true. Not needed anymore as I have copied this into nextUpdate below.
+  // const arrayChecker = () => {
+  //   let holdingArray = [...qState];
+  //   let testArray = holdingArray.filter((el) => el.appear);
+  //   console.log(testArray);
+  //   // console.log(typeof testArray);
+  //   // console.log(testArray[0].key);
+  //   testArray[0].key;
+  // };
 
+  // Not sure if I need this quite yet
+  // useEffect(() => {
+  //   arrayChecker();
+  // }, [qState]);
+
+  // COULD USE THIS FOR A MASTER MENU THAT SENDS CUSTOMER TO ANY QUESTION??
   const onClick = (i) => {
     let newArr = [...qState];
     newArr[i].appear = true;
@@ -182,8 +196,35 @@ const Questions = () => {
   };
 
   const mailUpdate = () => {
+    // take the current array and set mailing to appear: false, and uk residency appear to true.
     let newArr = [...qState];
     newArr[1].appear = true;
+    newArr[0].appear = false;
+    // set the basic questions to hide
+    let basicsArray = [...textQstate];
+    basicsArray[0].appear = false;
+    // return the new states. I put this at the end as I think this ordering = more sound logic.
+    setTextQstate(basicsArray);
+    setFormState(newArr);
+  };
+
+  const nextUpdate = () => {
+    // filter out the current state and return only the question which is currently set to appear.
+
+    let holdingArray = [...qState];
+    let testArray = holdingArray.filter((el) => el.appear);
+    // console.log(typeof testArray);
+    // console.log(testArray[0].key);
+
+    // extract out of this new filtered array, the key of that object. As array's are 0 indexed, we can simply use this key to set the next array item object's appear to true.
+
+    let nextKey = testArray[0].key;
+    let newArr = [...qState];
+    // this should set next Q to appear true, previous to false.
+    newArr[nextKey].appear = true;
+    newArr[nextKey - 1].appear = false;
+
+    // return the new state of the checkBox questions . I put this at the end as I think this ordering = more sound logic.
     setFormState(newArr);
   };
 
@@ -193,18 +234,19 @@ const Questions = () => {
       name: 'basics',
       key: 1,
       appear: true,
-      firstName: null,
-      lastNme: null,
-      email: null,
+      value: null,
+      question: 'lets start with the basics...',
     },
     {
       name: 'jobNature',
+      question: 'What is the nature of your employment?',
       key: 2,
       appear: false,
       value: null,
     },
     {
-      name: 'basics',
+      name: 'natureOfTrade',
+      question: 'What is the nature of your trade?',
       key: 3,
       appear: false,
       value: null,
@@ -222,30 +264,32 @@ const Questions = () => {
   return (
     <Form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" method="POST">
       <input type="hidden" name="form-name" value="questionnaire" />
-      <h3>Lets get started</h3>
-      <QuestionItem
-        section={textQstate[0]}
-        appear={textQstate[0].appear}
-        key={textQstate[0].key}
-        onChange={onChangeBasics}
-      />
+
+      {textQstate.map((section) => (
+        <QuestionItem
+          section={section}
+          appear={section.appear}
+          key={section.key}
+          onChange={onChangeBasics}
+        />
       ))}
+
       {qState.map((section) => (
         <QuestionCheckbox section={section} appear={section.appear} key={section.key} />
       ))}
       <p className="hero-cta">
-        <button
-          className="cta-btn cta-btn--hero mt-5"
-          onClick={mailUpdate}
-          // onClick={() => {
-          //   let newArr = [...qState];
-          //   newArr[1].appear = true;
-          //   setFormState(newArr);
-          // }}
-        >
-          {' '}
-          Next...{' '}
-        </button>
+        {/* This ternary is just temporary to swtich between buttons. Mail Update needs to get rid of the initial basic questions. */}
+        {qState[0].appear ? (
+          <button className="cta-btn cta-btn--hero mt-5" onClick={mailUpdate}>
+            {' '}
+            Next...{' '}
+          </button>
+        ) : (
+          <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+            {' '}
+            Next..1.{' '}
+          </button>
+        )}
       </p>
       <p className="hero-cta">
         <button className="cta-btn cta-btn--hero hide " type="submit">
