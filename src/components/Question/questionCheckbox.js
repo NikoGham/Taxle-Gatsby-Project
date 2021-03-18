@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Fade from 'react-reveal/Fade';
 import Form from 'react-bootstrap/Form';
 
-const questionCheckbox = ({ section, appear, notSureProp, onClick }) => {
+const questionCheckbox = ({ section, appear, notSureProp, onClick, onChange }) => {
   // Hide the not sure question?
   // const [notSureHide] = useState(notSureProp);
   // I've edited this out for now and just passed the prop directly to the ternary, as there is no point creating extra state for it I think?
@@ -15,7 +15,7 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick }) => {
   // type of check box
   const type = 'radio';
 
-  if (section.key !== 8) {
+  if (section.key != 8 && section.key != 13 && section.key != 18) {
     return (
       <Container className={appear ? 'null' : 'hide'}>
         <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
@@ -69,6 +69,34 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick }) => {
             </Col>
 
             <Col />
+          </Form.Row>
+        </Fade>
+      </Container>
+    );
+  } else if (section.key == 13 || section.key == 18) {
+    return (
+      <Container className={appear ? 'null' : 'hide'}>
+        <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
+          <Form.Row>
+            <Col />
+            <Col md={6}>
+              <p> {section.title}</p>
+              <br />
+            </Col>
+            <Col />
+          </Form.Row>
+          <Form.Row>
+            <Col>
+              <Form.Control
+                className="mb-3"
+                size="lg"
+                type="text"
+                placeholder={section.title}
+                name="value"
+                required
+                onChange={onChange}
+              />
+            </Col>
           </Form.Row>
         </Fade>
       </Container>

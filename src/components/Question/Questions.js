@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import QuestionItem from './questionItem';
 import QuestionCheckbox from './questionCheckbox';
+import QuestionDisplayEnd from './questionDisplayEnd';
 
 const Questions = () => {
   const [qState, setFormState] = useState([
@@ -27,7 +28,7 @@ const Questions = () => {
       title: 'Do you need a tax return prepared for the year to the 5th April?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 3,
     },
 
@@ -36,7 +37,7 @@ const Questions = () => {
       title: 'Is this the first tax return you will have prepared?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 4,
     },
 
@@ -45,7 +46,7 @@ const Questions = () => {
       title: 'Do you have an accountant or tax adviser at the moment?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 5,
     },
 
@@ -54,7 +55,7 @@ const Questions = () => {
       title: 'Do you need a tax return prepared for the year to 5th April 2022?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 6,
     },
 
@@ -63,7 +64,7 @@ const Questions = () => {
       title: 'Do you own a rental property?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 7,
     },
 
@@ -72,7 +73,7 @@ const Questions = () => {
       title: 'How many rental properties do you own?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 8,
     },
     {
@@ -80,7 +81,7 @@ const Questions = () => {
       title: 'Do you own the rental property solely or jointly??',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 9,
     },
     {
@@ -88,7 +89,7 @@ const Questions = () => {
       title: 'Do you own the rental properties solely, jointly or a mixture of the two?',
       appear: false,
       notSure: true,
-      value: [],
+      value: null,
       key: 10,
     },
     {
@@ -96,7 +97,7 @@ const Questions = () => {
       title: 'Do you have a letting agent?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 11,
     },
     {
@@ -104,7 +105,7 @@ const Questions = () => {
       title: 'Are you employed?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 12,
     },
 
@@ -113,7 +114,7 @@ const Questions = () => {
       title: 'What do you do for a living?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 13,
     },
 
@@ -122,7 +123,7 @@ const Questions = () => {
       title: 'Do you receive a pension?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 14,
     },
 
@@ -131,7 +132,7 @@ const Questions = () => {
       title: 'Do you have income from investments (dividends)?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 15,
     },
 
@@ -140,7 +141,7 @@ const Questions = () => {
       title: 'Are your investments managed by a broker?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 16,
     },
 
@@ -149,7 +150,7 @@ const Questions = () => {
       title: 'Are you self-employed?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 17,
     },
 
@@ -158,7 +159,7 @@ const Questions = () => {
       title: 'What is the nature of your trade?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 18,
     },
 
@@ -167,7 +168,7 @@ const Questions = () => {
       title: 'Do you earn over £50,000 a year?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 19,
     },
 
@@ -176,7 +177,7 @@ const Questions = () => {
       title: 'Have you sold a property recently and need to let HMRC know?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 20,
     },
     {
@@ -184,7 +185,7 @@ const Questions = () => {
       title: 'When did the property sale complete?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 21,
     },
     {
@@ -192,7 +193,7 @@ const Questions = () => {
       title: 'Have you sold any other assets that HMRC may need to know about?',
       appear: false,
       notSure: false,
-      value: [],
+      value: null,
       key: 22,
     },
   ]);
@@ -291,7 +292,7 @@ const Questions = () => {
       console.log('key 6');
       let newArr = [...qState];
       newArr[arrayPos].appear = false;
-      newArr[13].appear = true;
+      newArr[11].appear = true;
       setFormState(newArr);
     }
     // No. of Rental properties
@@ -307,11 +308,11 @@ const Questions = () => {
       console.log('soley or jointly one ');
       let newArr = [...qState];
       newArr[arrayPos].appear = false;
-      newArr[11].appear = true;
+      newArr[10].appear = true;
       setFormState(newArr);
     }
     // Are you employed??
-    else if (e.target.value != 'No' && arrayPos === 11) {
+    else if (e.target.value == 'No' && arrayPos === 11) {
       console.log('Employed?');
       let newArr = [...qState];
       newArr[arrayPos].appear = false;
@@ -355,6 +356,17 @@ const Questions = () => {
     }
   };
 
+  // Onchange event for job nature and nature of employment
+  const onChange = (e) => {
+    e.preventDefault();
+    let holdingArray = [...qState];
+    let testArray = holdingArray.filter((el) => el.appear);
+    let arrayPos = holdingArray.indexOf(testArray[0]);
+    console.log(arrayPos);
+    holdingArray[arrayPos].value = e.target.value;
+    setFormState(holdingArray);
+  };
+
   // !! with some of the above conditions, all I am really doing is skipping two ahead in some cases. This could be tidied up at some point with a global function called to skip two ahead. Like nextUpdate2() for example. !!
 
   // Text Question State
@@ -365,20 +377,6 @@ const Questions = () => {
       appear: true,
       value: null,
       question: 'lets start with the basics...',
-    },
-    {
-      name: 'jobNature',
-      question: 'What is the nature of your employment?',
-      key: 2,
-      appear: false,
-      value: null,
-    },
-    {
-      name: 'natureOfTrade',
-      question: 'What is the nature of your trade?',
-      key: 3,
-      appear: false,
-      value: null,
     },
   ]);
 
@@ -392,24 +390,6 @@ const Questions = () => {
   const onChangeBasics = (e) => {
     setBasicsState({ ...basicsState, [e.target.name]: e.target.value });
     console.log(basicsState);
-  };
-
-  // State for Job Nature
-
-  const [jobNatureState, setJobNatureState] = useState({
-    jobNature: [],
-  });
-  const onChangejobNature = (e) => {
-    setJobNatureState({ ...jobNatureState, jobNature: e.target.value });
-  };
-  // State for Nature of Trade
-
-  const [NOTState, setNOTstate] = useState({
-    natureOfTrade: [],
-  });
-
-  const onChangeNOTState = (e) => {
-    setNOTstate({ ...NOTState, natureOfTrade: e.target.value });
   };
 
   // Hide the back and forth buttons state
@@ -430,19 +410,6 @@ const Questions = () => {
         key={textQstate[0].key}
         onChange={onChangeBasics}
       />
-      <QuestionItem
-        section={textQstate[1]}
-        appear={textQstate[1].appear}
-        key={textQstate[1].key}
-        onChange={onChangejobNature}
-      />
-      <QuestionItem
-        section={textQstate[2]}
-        appear={textQstate[2].appear}
-        key={textQstate[2].key}
-        onChange={onChangeNOTState}
-      />
-      {/* I created three seperate questions for now instead of mapping to overcome the different changes to state needed. Keep an  eye out for better ways to do this. Perhaps could just test which one is visible with the filter array method I coded above?  */}
 
       {qState.map((section) => (
         <QuestionCheckbox
@@ -451,16 +418,18 @@ const Questions = () => {
           key={section.key}
           notSureProp={section.notSure}
           onClick={onClick}
+          onChange={onChange}
         />
       ))}
+
       {hideButtons ? null : (
         <>
           {' '}
           <p className="hero-cta">
-            <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+            {/* <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
               {' '}
               Back...{' '}
-            </button>
+            </button> */}
             <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
               {' '}
               Next...{' '}
@@ -483,6 +452,17 @@ const Questions = () => {
             within 24 hours.
           </p>
           <h3> Your Answers are as follows: </h3>
+          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.firstName} />
+          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.lastName} />
+          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.email} />
+          {qState.map((section) => (
+            <QuestionDisplayEnd
+              section={section}
+              appear={(section.value = null ? false : true)}
+              key={section.key}
+              value={section.value}
+            />
+          ))}
         </div>
       ) : null}
     </Form>
