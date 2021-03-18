@@ -9,23 +9,24 @@ const Questions = () => {
       name: 'mailingList',
       title: 'Are you happy to be added to my mailing list?',
       appear: true,
-      value: '',
+      notSure: false,
+      value: null,
       key: 1,
     },
     {
       name: 'residency',
-
       title: 'Are you a UK resident?',
       appear: false,
-      value: [],
+      notSure: false,
+      value: null,
       key: 2,
     },
 
     {
       name: 'trReq',
-
       title: 'Do you need a tax return prepared for the year to the 5th April?',
       appear: false,
+      notSure: false,
       value: [],
       key: 3,
     },
@@ -34,6 +35,7 @@ const Questions = () => {
       name: 'firstTr',
       title: 'Is this the first tax return you will have prepared?',
       appear: false,
+      notSure: false,
       value: [],
       key: 4,
     },
@@ -42,6 +44,7 @@ const Questions = () => {
       name: 'accountant',
       title: 'Do you have an accountant or tax adviser at the moment?',
       appear: false,
+      notSure: false,
       value: [],
       key: 5,
     },
@@ -50,6 +53,7 @@ const Questions = () => {
       name: 'futureTr',
       title: 'Do you need a tax return prepared for the year to 5th April 2022?',
       appear: false,
+      notSure: false,
       value: [],
       key: 6,
     },
@@ -58,6 +62,7 @@ const Questions = () => {
       name: 'rentalProperty',
       title: 'Do you own a rental property?',
       appear: false,
+      notSure: false,
       value: [],
       key: 7,
     },
@@ -66,78 +71,93 @@ const Questions = () => {
       name: 'noOfRentals',
       title: 'How many rental properties do you own?',
       appear: false,
+      notSure: false,
       value: [],
       key: 8,
     },
     {
       name: 'ownershipRental',
-
       title: 'Do you own the rental property solely or jointly??',
       appear: false,
+      notSure: false,
       value: [],
       key: 9,
     },
     {
       name: 'ownershipRentals',
-
       title: 'Do you own the rental properties solely, jointly or a mixture of the two?',
       appear: false,
+      notSure: true,
       value: [],
       key: 10,
     },
-    { name: 'letAgent', title: 'Do you have a letting agent?', appear: false, value: [], key: 11 },
-
+    {
+      name: 'letAgent',
+      title: 'Do you have a letting agent?',
+      appear: false,
+      notSure: false,
+      value: [],
+      key: 11,
+    },
     {
       name: 'employed',
-
       title: 'Are you employed?',
       appear: false,
+      notSure: false,
       value: [],
       key: 12,
     },
 
     {
       name: 'jobNature',
-
       title: 'What do you do for a living?',
       appear: false,
+      notSure: false,
       value: [],
       key: 13,
     },
 
     {
       name: 'soi',
-
       title: 'Do you receive a pension?',
       appear: false,
+      notSure: false,
       value: [],
       key: 14,
     },
 
     {
       name: 'investments',
-
       title: 'Do you have income from investments (dividends)?',
       appear: false,
+      notSure: false,
       value: [],
       key: 15,
     },
 
     {
       name: 'broker',
-
       title: 'Are your investments managed by a broker?',
       appear: false,
+      notSure: false,
       value: [],
       key: 16,
     },
 
-    { name: 'selfEmp', title: 'Are you self-employed?', appear: false, value: [], key: 17 },
+    {
+      name: 'selfEmp',
+      title: 'Are you self-employed?',
+      appear: false,
+      notSure: false,
+      value: [],
+      key: 17,
+    },
 
     {
       name: 'natureOfTrade',
       title: 'What is the nature of your trade?',
       appear: false,
+      notSure: false,
       value: [],
       key: 18,
     },
@@ -146,6 +166,7 @@ const Questions = () => {
       name: 'highEarners',
       title: 'Do you earn over £50,000 a year?',
       appear: false,
+      notSure: false,
       value: [],
       key: 19,
     },
@@ -154,6 +175,7 @@ const Questions = () => {
       name: 'propCapGains',
       title: 'Have you sold a property recently and need to let HMRC know?',
       appear: false,
+      notSure: false,
       value: [],
       key: 20,
     },
@@ -161,6 +183,7 @@ const Questions = () => {
       name: 'propSaleDetails',
       title: 'When did the property sale complete?',
       appear: false,
+      notSure: false,
       value: [],
       key: 21,
     },
@@ -168,6 +191,7 @@ const Questions = () => {
       name: 'otherCapGains',
       title: 'Have you sold any other assets that HMRC may need to know about?',
       appear: false,
+      notSure: false,
       value: [],
       key: 22,
     },
@@ -189,11 +213,11 @@ const Questions = () => {
   // }, [qState]);
 
   // COULD USE THIS FOR A MASTER MENU THAT SENDS CUSTOMER TO ANY QUESTION??
-  const onClick = (i) => {
-    let newArr = [...qState];
-    newArr[i].appear = true;
-    setFormState(newArr);
-  };
+  // const onClick = (i) => {
+  //   let newArr = [...qState];
+  //   newArr[i].appear = true;
+  //   setFormState(newArr);
+  // };
 
   const mailUpdate = () => {
     // take the current array and set mailing to appear: false, and uk residency appear to true.
@@ -216,17 +240,122 @@ const Questions = () => {
     // console.log(typeof testArray);
     // console.log(testArray[0].key);
 
-    // extract out of this new filtered array, the key of that object. As array's are 0 indexed, we can simply use this key to set the next array item object's appear to true.
+    if (testArray[0].key == 1) {
+      mailUpdate();
+    } else {
+      // extract out of this new filtered array, the key of that object. As array's are 0 indexed, we can simply use this key to set the next array item object's appear to true.
 
-    let nextKey = testArray[0].key;
-    let newArr = [...qState];
-    // this should set next Q to appear true, previous to false.
-    newArr[nextKey].appear = true;
-    newArr[nextKey - 1].appear = false;
+      let nextKey = testArray[0].key;
+      let newArr = [...qState];
 
-    // return the new state of the checkBox questions . I put this at the end as I think this ordering = more sound logic.
-    setFormState(newArr);
+      // this should set next Q to appear true, previous to false.
+      newArr[nextKey].appear = true;
+      newArr[nextKey - 1].appear = false;
+
+      // return the new state of the checkBox questions . I put this at the end as I think this ordering = more sound logic.
+      setFormState(newArr);
+    }
   };
+
+  // on each click we pull out the state into a holding array using ...operator. Then we filter out which section is appearing using filter method.
+
+  // we then get the key of the section. This could probably be skipped by using array.indexOf ? This works. will remove code to extract key
+  const onClick = (e) => {
+    // console.log(e.target.value);
+    let holdingArray = [...qState];
+    let testArray = holdingArray.filter((el) => el.appear);
+    // let changeKey = testArray[0].key;
+    // console.log(holdingArray[changeKey - 1]);
+    let arrayPos = holdingArray.indexOf(testArray[0]);
+    console.log(arrayPos);
+    holdingArray[arrayPos].value = e.target.value;
+    setFormState(holdingArray);
+
+    // console.log(holdingArray[changeKey - 1]);
+
+    if (e.target.value === 'No' && arrayPos === 2) {
+      // test to see if user answers yes and the current questions is Tax Return Requirement ( key 3 )
+      console.log('key 3 ');
+      // get the current key of TR req. Well we know it's gonna be three you god damn fool.
+      // get a fresh copy of the state.
+      let newArr = [...qState];
+      // set the current questions Tax return req to false
+      newArr[arrayPos].appear = false;
+      // set the Future tax return req question to true, skipping the other q's.
+      newArr[5].appear = true;
+      // update global state with the new question to display in the page.
+      setFormState(newArr);
+    }
+    // owns a rental property?
+    else if (e.target.value === 'No' && arrayPos === 6) {
+      console.log('key 6');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[13].appear = true;
+      setFormState(newArr);
+    }
+    // No. of Rental properties
+    else if (e.target.value != '1' && arrayPos === 7) {
+      console.log('noOfRentals');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[9].appear = true;
+      setFormState(newArr);
+    }
+    // solely or jointly one rental
+    else if (arrayPos === 8) {
+      console.log('soley or jointly one ');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[11].appear = true;
+      setFormState(newArr);
+    }
+    // Are you employed??
+    else if (e.target.value != 'No' && arrayPos === 11) {
+      console.log('Employed?');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[13].appear = true;
+      setFormState(newArr);
+    }
+
+    //Income from investments No??
+    else if (e.target.value == 'No' && arrayPos === 14) {
+      console.log('investments no?');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[16].appear = true;
+      setFormState(newArr);
+    }
+    //Self Employed No??
+    else if (e.target.value == 'No' && arrayPos === 16) {
+      console.log('self emp no?');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[18].appear = true;
+      setFormState(newArr);
+    }
+    // Prop cap gains none
+    else if (e.target.value == 'No' && arrayPos === 19) {
+      console.log('prop cap gains no?');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      newArr[21].appear = true;
+      setFormState(newArr);
+    }
+    // Final question
+    else if (arrayPos === 21) {
+      console.log('LastQuestion');
+      let newArr = [...qState];
+      newArr[arrayPos].appear = false;
+      setHideButtons(true);
+      setThankYouNote(true);
+    } else {
+      nextUpdate();
+    }
+  };
+
+  // !! with some of the above conditions, all I am really doing is skipping two ahead in some cases. This could be tidied up at some point with a global function called to skip two ahead. Like nextUpdate2() for example. !!
 
   // Text Question State
   const [textQstate, setTextQstate] = useState([
@@ -253,56 +382,108 @@ const Questions = () => {
     },
   ]);
 
+  // create state for initial basic answers
+  const [basicsState, setBasicsState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+
   const onChangeBasics = (e) => {
-    setTextQstate({ ...textQstate, [e.target.name]: e.target.value });
-    console.log(textQstate);
+    setBasicsState({ ...basicsState, [e.target.name]: e.target.value });
+    console.log(basicsState);
   };
 
+  // State for Job Nature
+
+  const [jobNatureState, setJobNatureState] = useState({
+    jobNature: [],
+  });
+  const onChangejobNature = (e) => {
+    setJobNatureState({ ...jobNatureState, jobNature: e.target.value });
+  };
+  // State for Nature of Trade
+
+  const [NOTState, setNOTstate] = useState({
+    natureOfTrade: [],
+  });
+
+  const onChangeNOTState = (e) => {
+    setNOTstate({ ...NOTState, natureOfTrade: e.target.value });
+  };
+
+  // Hide the back and forth buttons state
+  const [hideButtons, setHideButtons] = useState(false);
   // thank you note state
-  const [thankYouNote] = useState(false);
+  const [thankYouNote, setThankYouNote] = useState(false);
+
+  useEffect(() => {
+    console.log(qState);
+  }, [qState]);
 
   return (
     <Form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" method="POST">
       <input type="hidden" name="form-name" value="questionnaire" />
+      <QuestionItem
+        section={textQstate[0]}
+        appear={textQstate[0].appear}
+        key={textQstate[0].key}
+        onChange={onChangeBasics}
+      />
+      <QuestionItem
+        section={textQstate[1]}
+        appear={textQstate[1].appear}
+        key={textQstate[1].key}
+        onChange={onChangejobNature}
+      />
+      <QuestionItem
+        section={textQstate[2]}
+        appear={textQstate[2].appear}
+        key={textQstate[2].key}
+        onChange={onChangeNOTState}
+      />
+      {/* I created three seperate questions for now instead of mapping to overcome the different changes to state needed. Keep an  eye out for better ways to do this. Perhaps could just test which one is visible with the filter array method I coded above?  */}
 
-      {textQstate.map((section) => (
-        <QuestionItem
+      {qState.map((section) => (
+        <QuestionCheckbox
           section={section}
           appear={section.appear}
           key={section.key}
-          onChange={onChangeBasics}
+          notSureProp={section.notSure}
+          onClick={onClick}
         />
       ))}
-
-      {qState.map((section) => (
-        <QuestionCheckbox section={section} appear={section.appear} key={section.key} />
-      ))}
-      <p className="hero-cta">
-        {/* This ternary is just temporary to swtich between buttons. Mail Update needs to get rid of the initial basic questions. */}
-        {qState[0].appear ? (
-          <button className="cta-btn cta-btn--hero mt-5" onClick={mailUpdate}>
-            {' '}
-            Next...{' '}
-          </button>
-        ) : (
-          <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
-            {' '}
-            Next...{' '}
-          </button>
-        )}
-      </p>
-      <p className="hero-cta">
-        <button className="cta-btn cta-btn--hero hide " type="submit">
+      {hideButtons ? null : (
+        <>
           {' '}
-          Send!{' '}
-        </button>
-      </p>
+          <p className="hero-cta">
+            <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+              {' '}
+              Back...{' '}
+            </button>
+            <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+              {' '}
+              Next...{' '}
+            </button>
+          </p>
+          <p className="hero-cta">
+            <button className="cta-btn cta-btn--hero hide " type="submit">
+              {' '}
+              Send!{' '}
+            </button>
+          </p>{' '}
+        </>
+      )}
+
       {thankYouNote ? (
-        <p>
-          Thank you for answering the questions. This helps me to piece together your tax affairs
-          and provide a quote. If you have a general query, please ask. I will be in contact within
-          24 hours.
-        </p>
+        <div>
+          <p>
+            Thank you for answering the questions. This helps me to piece together your tax affairs
+            and provide a quote. If you have a general query, please ask. I will be in contact
+            within 24 hours.
+          </p>
+          <h3> Your Answers are as follows: </h3>
+        </div>
       ) : null}
     </Form>
   );

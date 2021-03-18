@@ -4,76 +4,139 @@ import PropTypes from 'prop-types';
 import Fade from 'react-reveal/Fade';
 import Form from 'react-bootstrap/Form';
 
-const questionCheckbox = ({ section, appear }) => {
+const questionCheckbox = ({ section, appear, notSureProp, onClick }) => {
   // Hide the not sure question?
-  const [notSureHide, setNotSureHide] = useState(true);
-  // state to record the value of the check box
-  const [stateCheck, setStateCheck] = useState({
-    yes: false,
-    no: false,
-    notSure: false,
-  });
-
-  // pull out of state
-  const { yes, no, notSure } = stateCheck;
+  // const [notSureHide] = useState(notSureProp);
+  // I've edited this out for now and just passed the prop directly to the ternary, as there is no point creating extra state for it I think?
 
   // different onChange functions to update state.
   // Need to think of way to evaluate this into one function.
 
-  const onChange = (e) => setStateCheck({ ...stateCheck, yes: !yes });
-  const onChangeNo = (e) => setStateCheck({ ...stateCheck, no: !no });
-  const onChangeNS = (e) => setStateCheck({ ...stateCheck, notSure: !notSure });
-
   // type of check box
   const type = 'radio';
 
-  return (
-    <Container className={appear ? 'null' : 'hide'}>
-      <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
-        <Form.Row>
-          <Col />
-          <Col md={6}>
-            <p> {section.title}</p>
+  if (section.key !== 8) {
+    return (
+      <Container className={appear ? 'null' : 'hide'}>
+        <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
+          <Form.Row>
+            <Col />
+            <Col md={6}>
+              <p> {section.title}</p>
 
-            <br />
-            <Form.Check
-              className="formCheckStyle"
-              inline
-              name="yes"
-              label="Yes"
-              type={type}
-              id={`inline-${type}-1`}
-              onChange={onChange}
-            />
-            <Form.Check
-              className="formCheckStyle"
-              inline
-              name="no"
-              label="No"
-              type={type}
-              id={`inline-${type}-2`}
-              onChange={onChangeNo}
-            />
-            <Form.Check
-              className="formCheckStyle"
-              inline
-              name="not sure"
-              label="Not Sure"
-              type={type}
-              id={`inline-${type}-3`}
-              className={notSureHide ? 'hide' : null}
-              onChange={onChangeNS}
-            />
-          </Col>
+              <br />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="yes"
+                label="Yes"
+                value="Yes"
+                type={type}
+                id={`inline-${type}-1`}
+                onClick={onClick}
+              />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="no"
+                label="No"
+                value="No"
+                type={type}
+                id={`inline-${type}-2`}
+                onClick={onClick}
+              />
+              {section.key === 10 ? (
+                <Form.Check
+                  className="formCheckStyle"
+                  inline
+                  name="no"
+                  label="Mixture"
+                  value="Mixture"
+                  type={type}
+                  id={`inline-${type}-2`}
+                  onClick={onClick}
+                />
+              ) : null}
+              <Form.Check
+                inline
+                name="not sure"
+                label="Not Sure"
+                type={type}
+                id={`inline-${type}-3`}
+                className={notSureProp ? 'formCheckStyle' : 'hide'}
+                onClick={onClick}
+              />
+            </Col>
 
-          <Col />
-        </Form.Row>
-      </Fade>
-    </Container>
-  );
+            <Col />
+          </Form.Row>
+        </Fade>
+      </Container>
+    );
+  } else {
+    return (
+      <Container className={appear ? 'null' : 'hide'}>
+        <Fade left duration={1000} delay={300} distance="30px" key={section.key}>
+          <Form.Row>
+            <Col />
+            <Col md={6}>
+              <p> {section.title}</p>
+
+              <br />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="1"
+                label="1"
+                value="1"
+                type={type}
+                id={`inline-${type}-1`}
+                onClick={onClick}
+              />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="2"
+                label="2"
+                value="2"
+                type={type}
+                id={`inline-${type}-2`}
+                onClick={onClick}
+              />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="3"
+                label="3"
+                value="3"
+                type={type}
+                id={`inline-${type}-3`}
+                onClick={onClick}
+              />
+              <Form.Check
+                className="formCheckStyle"
+                inline
+                name="4+"
+                label="4+"
+                value="4+"
+                type={type}
+                id={`inline-${type}-3`}
+                onClick={onClick}
+              />
+            </Col>
+
+            <Col />
+          </Form.Row>
+        </Fade>
+      </Container>
+    );
+  }
 };
-
 questionCheckbox.propTypes = {
+  section: PropTypes.object,
   appear: PropTypes.bool,
+  notSureProp: PropTypes.bool,
+  onClick: PropTypes.func,
 };
+
 export default questionCheckbox;

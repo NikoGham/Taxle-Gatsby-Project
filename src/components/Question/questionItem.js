@@ -11,7 +11,7 @@ const questionItem = ({ section, appear, onChange }) => {
 
   // ! just need to configure the question item to deliver correct input fields and set up onChange event handler
 
-  const [sectionState, setSectionState] = useState(section);
+  const [sectionState] = useState(section);
 
   return (
     <Container className={appear ? 'null' : 'hide'}>
@@ -32,8 +32,14 @@ const questionItem = ({ section, appear, onChange }) => {
         </Col>
         <Col>
           <Form.Label srOnly></Form.Label>
-
-          <Form.Control className="mb-3" size="lg" placeholder="Last name" required />
+          <Form.Control
+            className="mb-3"
+            size="lg"
+            placeholder="Last name"
+            name="lastName"
+            required
+            onChange={onChange}
+          />
         </Col>
       </Form.Row>
 
@@ -42,7 +48,15 @@ const questionItem = ({ section, appear, onChange }) => {
         <Col md={6}>
           <Form.Label srOnly></Form.Label>
 
-          <Form.Control className="mb-3" size="lg" type="email" placeholder="Email" required />
+          <Form.Control
+            className="mb-3"
+            size="lg"
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+            onChange={onChange}
+          />
         </Col>
         <Col />
       </Form.Row>
