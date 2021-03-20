@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
 import QuestionItem from './questionItem';
 import QuestionCheckbox from './questionCheckbox';
-import QuestionDisplayEnd from './questionDisplayEnd';
+// import QuestionDisplayEnd from './questionDisplayEnd';
 
 const Questions = () => {
   const [qState, setFormState] = useState([
@@ -231,6 +232,8 @@ const Questions = () => {
     // return the new states. I put this at the end as I think this ordering = more sound logic.
     setTextQstate(basicsArray);
     setFormState(newArr);
+    setHideBack(false);
+    setHideNext(true);
   };
 
   const nextUpdate = () => {
@@ -255,6 +258,29 @@ const Questions = () => {
 
       // return the new state of the checkBox questions . I put this at the end as I think this ordering = more sound logic.
       setFormState(newArr);
+    }
+  };
+
+  const backUpdate = () => {
+    let holdingArray = [...qState];
+    let testArray = holdingArray.filter((el) => el.appear);
+    let arrayPos = holdingArray.indexOf(testArray[0]);
+    console.log(arrayPos);
+    // Test to see if we're back at the start of the questionaire.
+    if (arrayPos == 1) {
+      setHideBack(true);
+      setHideNext(false);
+      let basicArray = [...textQstate];
+      basicArray[0].appear = true;
+      setTextQstate(basicArray);
+      holdingArray[arrayPos].appear = false;
+      holdingArray[arrayPos - 1].appear = true;
+      setFormState(holdingArray);
+    } else {
+      holdingArray[arrayPos].appear = false;
+      holdingArray[arrayPos - 1].appear = true;
+
+      setFormState(holdingArray);
     }
   };
 
@@ -349,8 +375,10 @@ const Questions = () => {
       console.log('LastQuestion');
       let newArr = [...qState];
       newArr[arrayPos].appear = false;
-      setHideButtons(true);
       setThankYouNote(true);
+      setHideSubmit(false);
+      console.log(qState);
+      console.log(textQstate);
     } else {
       nextUpdate();
     }
@@ -393,13 +421,35 @@ const Questions = () => {
   };
 
   // Hide the back and forth buttons state
-  const [hideButtons, setHideButtons] = useState(false);
+  const [hideBack, setHideBack] = useState(true);
+
+  const [hideNext, setHideNext] = useState(true);
+
+  // Hide the submit button state.
+  const [hideSubmit, setHideSubmit] = useState(true);
   // thank you note state
   const [thankYouNote, setThankYouNote] = useState(false);
 
   useEffect(() => {
     console.log(qState);
   }, [qState]);
+
+  // Next Button appear to text questions only
+  let nextButton;
+  let tempState = [...qState];
+  console.log(tempState);
+  if (tempState[12].appear || tempState[17].appear) {
+    nextButton = (
+      <p className="hero-cta">
+        <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+          {' '}
+          Next...{' '}
+        </button>
+      </p>
+    );
+  } else {
+    nextButton = null;
+  }
 
   return (
     <Form name="questionnaire" data-netlify="true" data-netlify-honeypot="bot-field" method="POST">
@@ -421,29 +471,28 @@ const Questions = () => {
           onChange={onChange}
         />
       ))}
-
-      {hideButtons ? null : (
-        <>
-          {' '}
-          <p className="hero-cta">
-            {/* <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
-              {' '}
-              Back...{' '}
-            </button> */}
-            <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
-              {' '}
-              Next...{' '}
-            </button>
-          </p>
-          <p className="hero-cta">
-            <button className="cta-btn cta-btn--hero hide " type="submit">
-              {' '}
-              Send!{' '}
-            </button>
-          </p>{' '}
-        </>
+      {nextButton}
+      {hideBack ? null : (
+        <p className="hero-cta">
+          <button className="cta-btn cta-btn--hero mt-5" onClick={backUpdate}>
+            {' '}
+            Back...{' '}
+          </button>
+        </p>
       )}
-
+      {hideNext ? null : (
+        <p className="hero-cta">
+          <button className="cta-btn cta-btn--hero mt-5" onClick={nextUpdate}>
+            {' '}
+            Next...{' '}
+          </button>
+        </p>
+      )}
+      {hideSubmit ? null : (
+        <Button className="cta-btn cta-btn--hero " type="submit">
+          <p className="hero-cta">Submit and send me a quote! </p>
+        </Button>
+      )}
       {thankYouNote ? (
         <div>
           <p>
@@ -451,18 +500,6 @@ const Questions = () => {
             and provide a quote. If you have a general query, please ask. I will be in contact
             within 24 hours.
           </p>
-          <h3> Your Answers are as follows: </h3>
-          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.firstName} />
-          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.lastName} />
-          <QuestionDisplayEnd section={basicsState} appear={true} value={basicsState.email} />
-          {qState.map((section) => (
-            <QuestionDisplayEnd
-              section={section}
-              appear={(section.value = null ? false : true)}
-              key={section.key}
-              value={section.value}
-            />
-          ))}
         </div>
       ) : null}
     </Form>

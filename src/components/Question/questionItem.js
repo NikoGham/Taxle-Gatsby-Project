@@ -20,7 +20,7 @@ const questionItem = ({ section, appear, onChange }) => {
       </Row>
       <Form.Row>
         <Col>
-          <Form.Label srOnly></Form.Label>
+          <Form.Label srOnly>First Name </Form.Label>
           <Form.Control
             className="mb-3"
             size="lg"
@@ -31,7 +31,7 @@ const questionItem = ({ section, appear, onChange }) => {
           />
         </Col>
         <Col>
-          <Form.Label srOnly></Form.Label>
+          <Form.Label srOnly>Last Name</Form.Label>
           <Form.Control
             className="mb-3"
             size="lg"
@@ -46,7 +46,7 @@ const questionItem = ({ section, appear, onChange }) => {
       <Form.Row>
         <Col />
         <Col md={6}>
-          <Form.Label srOnly></Form.Label>
+          <Form.Label srOnly>Email</Form.Label>
 
           <Form.Control
             className="mb-3"
