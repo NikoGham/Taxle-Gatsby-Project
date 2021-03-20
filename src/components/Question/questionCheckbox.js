@@ -28,7 +28,7 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick, onChange }) =
               <Form.Check
                 className="formCheckStyle"
                 inline
-                name="yes"
+                name={section.title}
                 label="Yes"
                 value="Yes"
                 type={type}
@@ -38,7 +38,7 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick, onChange }) =
               <Form.Check
                 className="formCheckStyle"
                 inline
-                name="no"
+                name={section.title}
                 label="No"
                 value="No"
                 type={type}
@@ -49,7 +49,7 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick, onChange }) =
                 <Form.Check
                   className="formCheckStyle"
                   inline
-                  name="no"
+                  name={section.title}
                   label="Mixture"
                   value="Mixture"
                   type={type}
@@ -59,7 +59,7 @@ const questionCheckbox = ({ section, appear, notSureProp, onClick, onChange }) =
               ) : null}
               <Form.Check
                 inline
-                name="not sure"
+                name={section.title}
                 label="Not Sure"
                 type={type}
                 id={`inline-${type}-3`}
