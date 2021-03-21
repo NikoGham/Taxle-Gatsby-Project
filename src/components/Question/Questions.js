@@ -260,11 +260,39 @@ const Questions = () => {
       setFormState(newArr);
     }
   };
+  // Array to hold all keys that have appeared.
+  // When creating it like this, it isn't holding the previous number. I wonder if this is where state is the constant that can hold data while the rest of the page re-renders. So I need to make this with state instead.
+
+  const [historyState, setHistoryState] = useState([]);
+
+  let putInHistory = () => {
+    // First create a new array and holding array to get the current question's index.
+    let newArray = [...qState];
+    let holdingArray = newArray.filter((el) => el.appear);
+    console.log(holdingArray);
+    // Confirm the current questions position in the array
+    let historyPos = newArray.indexOf(holdingArray[0]);
+    console.log(historyPos);
+    // create the new holding array for the new state to past to setHistoryState
+    let newHistoryState = [...historyState];
+    newHistoryState.push(historyPos);
+    console.log(newHistoryState);
+    // Update the historyState with the new history after each question.
+    setHistoryState(newHistoryState);
+    console.log(historyState);
+  };
 
   const backUpdate = () => {
     let holdingArray = [...qState];
-    let testArray = holdingArray.filter((el) => el.appear);
-    let arrayPos = holdingArray.indexOf(testArray[0]);
+    let historyHoldingArray = [...historyState];
+    // let testArray = holdingArray.filter((el) => el.appear);
+    // let arrayPos = holdingArray.indexOf(testArray[0]);
+    // I think we can edit out the above and just use the hisotry state, as that's the history of questions that the client has gone over.
+    // Actually no we still need to update the main question state, so we'll need to pull in qState and update the appear for the relevant array position.
+
+    let arrayPos = historyHoldingArray[historyHoldingArray.length - 1];
+    // we need the following array index to find out the second to last position in the history array to send the user back to
+    let beforeArrayPos = historyHoldingArray[historyHoldingArray.length - 2];
     console.log(arrayPos);
     // Test to see if we're back at the start of the questionaire.
     if (arrayPos == 1) {
@@ -276,9 +304,15 @@ const Questions = () => {
       holdingArray[arrayPos].appear = false;
       holdingArray[arrayPos - 1].appear = true;
       setFormState(holdingArray);
-    } else {
+    } else if (arrayPos == 12 || arrayPos == 17) {
+      // I've included 12 and 17 as the text questions because they rerender Onchange which causes useEffect to run the putInHistory function each character type. This meant that the history array would populate with these indexes an incorrect number of times throwing the history trail off.
       holdingArray[arrayPos].appear = false;
       holdingArray[arrayPos - 1].appear = true;
+      console.log(arrayPos);
+      setFormState(holdingArray);
+    } else {
+      holdingArray[arrayPos].appear = false;
+      holdingArray[beforeArrayPos].appear = true;
 
       setFormState(holdingArray);
     }
@@ -431,13 +465,12 @@ const Questions = () => {
   const [thankYouNote, setThankYouNote] = useState(false);
 
   useEffect(() => {
-    console.log(qState);
+    putInHistory();
   }, [qState]);
 
   // Next Button appear to text questions only
   let nextButton;
   let tempState = [...qState];
-  console.log(tempState);
   if (tempState[12].appear || tempState[17].appear) {
     nextButton = (
       <p className="hero-cta">
